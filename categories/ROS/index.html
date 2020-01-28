@@ -161,7 +161,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    11 分钟 读完 (大约 1639 个字)
+                    11 分钟 读完 (大约 1640 个字)
                 </span>
                 
                 
@@ -177,82 +177,16 @@
             <p>ROS，“RobotOS”，机器人操作系统。</p>
 <p>众所周知，目前使用最广泛的五大主流操作系统分别是：Windows、Linux、Ubuntu、MacOS、ROS</p>
 <p>（雾）</p>
-<h2 id="ROS到底是啥"><a href="#ROS到底是啥" class="headerlink" title="ROS到底是啥?"></a>ROS到底是啥?</h2><p>ROS虽然叫做操作系统，但是并不能像Windows、Linux那样独立运行在电脑里。目前最主流的方式是将其安装在Ubuntu下，在Ubuntu环境下对其进行操作，从而控制机器人。</p>
-<p>ROS目前广泛用于与机器人搭边的几乎一切行业，所以它的重要性可见一斑。</p>
-<h2 id="怎么安装和运行ROS"><a href="#怎么安装和运行ROS" class="headerlink" title="怎么安装和运行ROS?"></a>怎么安装和运行ROS?</h2><h3 id="安装前你需要知道"><a href="#安装前你需要知道" class="headerlink" title="安装前你需要知道"></a>安装前你需要知道</h3><p>首先我们要知道，Ubuntu版本的不同，对应的ROS版本也就不同。不过，目前主流的操作是使用长期支持(LTS)版本的Ubuntu来安装对应版本的ROS。</p>
-<h4 id="版本对应关系"><a href="#版本对应关系" class="headerlink" title="版本对应关系"></a>版本对应关系</h4><p>Ubuntu18.04 LTS —– &gt; ROS Kinetic</p>
-<p>Ubuntu16.04 LTS —– &gt; ROS Melodic</p>
-<p>在这篇文章中，我以Ubuntu18.04 LTS为例，安装Melodic版本的ROS。</p>
-<p>Ubuntu16.04的用户也不要着急，只需要把我下面写到的所有指令中的“Melodic”换成“Kinetic”即可。</p>
-<h3 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h3><p>下面我们正式开始。</p>
-<p>因为一些不可抗力的因素，你要确保你有一个良好的网络环境，必要时可以连接手机热点。</p>
-<h4 id="1-配置Ubuntu“软件和更新”"><a href="#1-配置Ubuntu“软件和更新”" class="headerlink" title="1.配置Ubuntu“软件和更新”"></a>1.配置Ubuntu“软件和更新”</h4><p>在所有应用里找到“软件和更新”，进入。在”restricted”、 “universe” 、 “multiverse”三项前打勾（如果已经是对勾就可以忽略）</p>
-<img src="G:\GeekAdmin\source\images\ROS1 from@haiyinshushe.png" alt="ROS1 from@haiyinshushe" style="zoom:80%;" />
-
-<p>在这里借用 CSDN@haiyinshushe 的图，如有侵权，请联系我，我将于第一时间删除。</p>
-<h4 id="2-配置软件源（ustc源）"><a href="#2-配置软件源（ustc源）" class="headerlink" title="2.配置软件源（ustc源）"></a>2.配置软件源（ustc源）</h4><p>就不用官网提供的软件源了。贴出来，大家可以自己试下。我自己用这个速度奇慢，还经常time out，无语。</p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">http://packages.ros.org/ros/ubuntu</span></span><br></pre></td></tr></table></figure>
-
-<p>我个人用的是中科大的源，在终端里输入如下命令，使我们可以下载ROS软件包。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c <span class="string">'. /etc/lsb-release &amp;&amp; echo "deb http://mirrors.ustc.edu.cn/ros/ubuntu/ $DISTRIB_CODENAME main" &gt; /etc/apt/sources.list.d/ros-latest.list'</span></span><br></pre></td></tr></table></figure>
-
-<p>当然你也可以试试清华的镜像源。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c <span class="string">'. /etc/lsb-release &amp;&amp; echo "deb http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/ $DISTRIB_CODENAME main" &gt; /etc/apt/sources.list.d/ros-latest.list'</span></span><br></pre></td></tr></table></figure>
-
-<p>执行完之后，我们看下一步。</p>
-<h4 id="3-设置密钥"><a href="#3-设置密钥" class="headerlink" title="3.设置密钥"></a>3.设置密钥</h4><p>这一步是为了确认源代码是正确的，可靠的。</p>
-<p>在终端输入如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116</span><br></pre></td></tr></table></figure>
-
-<p>![ROS2 from@haiyinshushe](G:\GeekAdmin\source\images\ROS2 <a href="mailto:from@haiyinshushe.png">from@haiyinshushe.png</a>)</p>
-<p>在这里借用 CSDN@haiyinshushe 的图，如有侵权，请联系我，我将于第一时间删除。</p>
-<h4 id="4-下载并安装ROS"><a href="#4-下载并安装ROS" class="headerlink" title="4.下载并安装ROS"></a>4.下载并安装ROS</h4><p>确保软件包目录索引是最新的，执行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<p>紧接着我们开始下载安装桌面完整版的ROS Melodic，Ubuntu16.04的用户更换版本即可，详情回顾文章开头。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ros-melodic-desktop-full</span><br></pre></td></tr></table></figure>
-
-<p>然后我们就会看到终端里刷刷刷地闪过很多东西，经过大约十分钟的等待（我这里是十分钟），ROS就已经安装在你的电脑上了。</p>
-<p>但是，我们还有几步没有完成。</p>
-<h4 id="5-初始化ROS（重要）"><a href="#5-初始化ROS（重要）" class="headerlink" title="5.初始化ROS（重要）"></a>5.初始化ROS（重要）</h4><p>之前在网络上参照一些教程安装ROS的时候，每次都是顺顺利利地进行，到了这一步，就卡壳了。</p>
-<p>因为一些特殊的原因，raw.github无法访问，而它也是我们进行这一步所必须经过的一个网站。</p>
-<p>所以我在下面贴出常规（一般）的方法步骤，你可以按照下面的步骤尝试一下，如果遇到诸如time out之类的问题，你可以尝试使用手机热点，如果还是不行，请参照我后面贴出的变通解决的办法。</p>
-<h5 id="一般方法"><a href="#一般方法" class="headerlink" title="一般方法"></a>一般方法</h5><p>在终端键入如下命令，初始化rosdep：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rosdep init</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosdep update</span><br></pre></td></tr></table></figure>
-
-<p>出现如下字样，即代表你成功初始化了ROS：</p>
-<p>![ROS3 from@zhangrelay](G:\GeekAdmin\source\images\ROS3 <a href="mailto:from@zhangrelay.png">from@zhangrelay.png</a>)</p>
-<p>在这里借用 CSDN@zhangrelay 的图，如有侵权，请联系我，我将于第一时间删除。</p>
-<p>如果没有报错（出现error、Can’t、not之类的字样），即代表你成功初始化了ROS。成功后，可直接跳转至下一步。</p>
-<p>如果报错了，或者和图片上不符，那么请看我的变通解决办法：</p>
-<h5 id="变通解决办法"><a href="#变通解决办法" class="headerlink" title="变通解决办法"></a>变通解决办法</h5><p>思路：用人为操作替代rosdep init和rosdep update命令，即手动进行初始化。</p>
-<p>处理方式：从一台已安装好ROS的设备中（必须跟你的版本一致），拷贝位于主文件夹的 “.ros” 文件夹到你的设备相同目录下，然后可直接跳过初始化步骤。</p>
-<p>我的版本是Melodic，贴出我的 “.ros” 文件夹（此文件夹在linux系统中是隐藏的，请配置系统显示隐藏文件夹）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">链接: https://pan.baidu.com/s/1Vzcie6tDHdvbhMi_WMy3Bw 提取码: r6wp</span><br></pre></td></tr></table></figure>
-
-<p>（此方法从他人处得知，在此表示感谢）</p>
-<p>如果Kinetic用户也想使用此法，请找身边同版本ROS的设备，拷贝“.ros“文件夹即可，步骤同上。</p>
-<h4 id="6-配置环境变量"><a href="#6-配置环境变量" class="headerlink" title="6.配置环境变量"></a>6.配置环境变量</h4><p>将下面两段命令分别键入到终端中：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"source /opt/ros/melodic/setup.bash"</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<h4 id="安装结束"><a href="#安装结束" class="headerlink" title="安装结束"></a>安装结束</h4><p>自此，安装和配置ROS的步骤已经全部完成。</p>
-<p>那么，怎么运行ROS来检验安装成果呢？</p>
-<h3 id="运行ROS"><a href="#运行ROS" class="headerlink" title="运行ROS"></a>运行ROS</h3><p>在终端键入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roscore</span><br></pre></td></tr></table></figure>
-
-<p>![ROS4 from@shanpenghui](G:\GeekAdmin\source\images\ROS4 <a href="mailto:from@shanpenghui.png">from@shanpenghui.png</a>)</p>
-<p>在这里借用 CSDN@shanpenghui 的图，如有侵权，请联系我，我将于第一时间删除。</p>
-<p>出现如上字样即为安装成功！</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>如果按照上面的步骤，你成功安装了ROS，那么祝贺你！</p>
-<p>如果没有的话，别灰心，可以通过我的qq 2139167537 联系到我，我会尽我能力给你解答。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://blog.csdn.net/shanpenghui/article/details/89041359">https://blog.csdn.net/shanpenghui/article/details/89041359</a></p>
-<p><a href="https://blog.csdn.net/haiyinshushe/article/details/84256137">https://blog.csdn.net/haiyinshushe/article/details/84256137</a></p>
-<p><a href="https://blog.csdn.net/zhangrelay/article/details/80241758">https://blog.csdn.net/zhangrelay/article/details/80241758</a></p>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/01/28/ROS%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0-%E5%87%86%E5%A4%87%E7%AF%87/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
